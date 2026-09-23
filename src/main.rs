@@ -30,40 +30,13 @@ use cmds::system::{
 
 use anyhow::{Context, Result};
 use clap::error::ErrorKind;
-use clap::{Parser, Subcommand, ValueEnum};
+use clap::{Parser, Subcommand};
 use std::ffi::OsString;
 use std::path::{Path, PathBuf};
 
-/// Target agent for hook installation.
-#[derive(Debug, Clone, Copy, PartialEq, ValueEnum)]
-pub enum AgentTarget {
-    /// Claude Code (default)
-    Claude,
-    /// Cursor Agent (editor and CLI)
-    Cursor,
-    /// Trae IDE
-    Trae,
-    /// Windsurf IDE (Cascade)
-    Windsurf,
-    /// Cline / Roo Code (VS Code)
-    Cline,
-    /// Kilo Code
-    Kilocode,
-    /// Google Antigravity
-    Antigravity,
-    /// Kimi AI
-    Kimi,
-    /// Pi coding agent
-    Pi,
-    /// Hermes CLI
-    Hermes,
-    /// Factory Droid CLI
-    Droid,
-    /// Mistral Vibe CLI
-    Vibe,
-    /// Oh My Pi (OMP)
-    Omp,
-}
+mod agent_target;
+
+use agent_target::AgentTarget;
 
 #[derive(Parser)]
 #[command(
@@ -3828,6 +3801,7 @@ mod tests {
             "rubocop",
             "rspec",
             "pip",
+            "uv",
             "go",
             "gt",
             "golangci-lint",
