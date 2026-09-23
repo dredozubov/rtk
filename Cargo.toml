@@ -6,11 +6,15 @@ rust-version = "1.91"
 authors = ["Patrick Szymkowiak"]
 description = "Rust Token Killer - High-performance CLI proxy to minimize LLM token consumption"
 license = "Apache-2.0"
-homepage = "https://www.rtk-ai.app"
-repository = "https://github.com/rtk-ai/rtk"
+homepage = "https://github.com/dredozubov/rtk"
+repository = "https://github.com/dredozubov/rtk"
 readme = "README.md"
 keywords = ["cli", "llm", "token", "filter", "productivity"]
 categories = ["command-line-utilities", "development-tools"]
+
+[lib]
+name = "rtk"
+path = "src/lib.rs"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
@@ -30,7 +34,7 @@ serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
 colored = "3"
 dirs = "5"
-rusqlite = { version = "0.31", features = ["bundled"] }
+rusqlite = { version = "0.37", features = ["bundled"] }
 toml = "0.8"
 toml_edit = "0.22"
 chrono = "0.4"
