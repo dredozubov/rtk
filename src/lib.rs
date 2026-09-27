@@ -3,8 +3,12 @@
 // `resolve_filter` and the core filter API expose the exact filter
 // functions the CLI uses, without duplicating or shim-ing modules. The
 // tree carries CLI runners too; they are simply not called by the lib
-// API (dead_code is allowed for that reason).
-#![allow(dead_code)]
+// API. That makes "unused in the lib compilation" the expected state
+// for bin-only items — dead code, and re-exports only the bin's routing
+// consumes (e.g. hooks/init installers) — so both lint families are
+// allowed crate-wide here. Upstream builds with -D warnings but has no
+// lib target, so only the fork ever sees these.
+#![allow(dead_code, unused_imports)]
 
 pub mod pipe_cmd {
     //! Guarded library access to the CLI filters.
