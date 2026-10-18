@@ -14,9 +14,10 @@
 #   cargo build --release --manifest-path proxy/Cargo.toml
 #
 # The cost of the split is that `libsqlite3-sys` (which declares
-# `links = "sqlite3"`) is pinned by hand in both lockfiles: rusqlite 0.34 here
-# and in proxy/Cargo.toml, matching what icm-store links. Do not bump one
-# alone. CI lints and tests the daemon in its own job.
+# `links = "sqlite3"`) is pinned by hand in both lockfiles. Fork note: this
+# crate is bumped to 0.37 to unify with ri-engine's pin (the fork exists to
+# embed rtk filters in ri; ri does not consume proxy/, which stays on
+# upstream's 0.34 where icm-store ties it).
 [workspace]
 members = [".", "text", "engine", "plugin"]
 
@@ -28,8 +29,8 @@ rust-version = "1.91"
 authors = ["RTK AI Labs"]
 description = "Rust Token Killer - High-performance CLI proxy to minimize LLM token consumption"
 license = "Apache-2.0"
-homepage = "https://www.rtk-ai.app"
-repository = "https://github.com/rtk-ai/rtk"
+homepage = "https://github.com/dredozubov/rtk"
+repository = "https://github.com/dredozubov/rtk"
 readme = "README.md"
 keywords = ["cli", "llm", "token", "filter", "productivity"]
 categories = ["command-line-utilities", "development-tools"]
@@ -72,7 +73,7 @@ dirs = "7"
 # Pinned to what the proxy crate's icm-store links: libsqlite3-sys declares
 # `links = "sqlite3"`, and two versions of it cannot coexist in one workspace
 # resolve. See proxy/Cargo.toml.
-rusqlite = { version = "0.34", features = ["bundled"] }
+rusqlite = { version = "0.37", features = ["bundled"] }
 toml = "0.8"
 toml_edit = "0.22"
 chrono = "0.4"
