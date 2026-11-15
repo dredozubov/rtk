@@ -64,15 +64,15 @@ regex = "1"
 # The usage store. Pinned to what icm-store links (both bundle libsqlite3-sys,
 # and two versions of a `links = "sqlite3"` crate cannot coexist in one
 # dependency graph) -- which is also why the root `rtk` crate tracks this pin.
-rusqlite = { version = "0.34", features = ["bundled"] }
+rusqlite = { version = "0.40", features = ["bundled"] }
 # User-level config/log dir resolution for `rtk-proxy service` (launchd /
 # systemd --user / Task Scheduler). Same version pin as the root rtk crate.
 dirs = "5"
 # Permanent memory (ICM) — CCR's cache backend. FTS-only (no fastembed/ONNX),
 # sqlite backend only: this is a single-node local daemon, so there is no
 # postgres/multi-pod need here. Apache-2.0.
-icm-core = { git = "https://github.com/rtk-ai/icm", rev = "831e915b", default-features = false }
-icm-store = { git = "https://github.com/rtk-ai/icm", rev = "831e915b", default-features = false, features = ["backend-sqlite"] }
+icm-core = { git = "https://github.com/rtk-ai/icm", rev = "3b9fcd7d726d82268f3d67a11ab63fb645442536", default-features = false }
+icm-store = { git = "https://github.com/rtk-ai/icm", rev = "3b9fcd7d726d82268f3d67a11ab63fb645442536", default-features = false, features = ["backend-sqlite"] }
 
 [target.'cfg(target_env = "musl")'.dependencies]
 mimalloc = { version = "0.1", features = ["no_thp"] }
